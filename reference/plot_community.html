@@ -68,6 +68,7 @@
 <span>  layout <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"fr"</span>, <span class="st">"dh"</span>, <span class="st">"gem"</span>, <span class="st">"graphopt"</span>, <span class="st">"kk"</span>, <span class="st">"lgl"</span>, <span class="st">"mds"</span>, <span class="st">"sugiyama"</span><span class="op">)</span>,</span>
 <span>  markCommunity <span class="op">=</span> <span class="st">"ellipse"</span>,</span>
 <span>  markAlpha <span class="op">=</span> <span class="fl">0.2</span>,</span>
+<span>  color_lg_title <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  edgeAlpha <span class="op">=</span> <span class="fl">0.8</span>,</span>
 <span>  scale_edgeWidth <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">3</span><span class="op">)</span>,</span>
 <span>  edgeLegend <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -102,42 +103,52 @@ database and inbuilt KEGG pathway annotation information will be used</p></dd>
 
 
 <dt>colorBy</dt>
-<dd><p>Can be any column withy <em>community</em>, <em>robustZ</em> or <em>pvalue</em>. To color by <em>robustZ</em> or <em>pvalue</em>, a
-column must exist in the <code>normalisedScores</code> <code>data.frame</code> for the chosen parameter</p></dd>
+<dd><p>Can be any column with in the <code>normalisedScores</code> object, or
+the additional value "community".</p></dd>
 
 
 <dt>communityMethod</dt>
-<dd><p>A community detection method supported by <code>igraph</code>. See details for all methods available.</p></dd>
+<dd><p>A community detection method supported by <code>igraph</code>.
+See details for all methods available.</p></dd>
 
 
 <dt>foldGSname</dt>
-<dd><p><code>logical</code>. Should long gene-set names be folded into two lines</p></dd>
+<dd><p><code>logical</code>. Should long gene-set names be folded into two
+lines</p></dd>
 
 
 <dt>foldafter</dt>
-<dd><p>The number of words after which gene-set names should be folded. Defaulted to 2</p></dd>
+<dd><p>The number of words after which gene-set names should be
+folded. Defaults to 2</p></dd>
 
 
 <dt>layout</dt>
-<dd><p>The layout algorithm to apply. Accepted layouts are <code>"fr", "dh", "gem", "graphopt", "kk", "lgl", "mds" and "sugiyama"</code></p></dd>
+<dd><p>The layout algorithm to apply. Accepted layouts are
+<code>"fr", "dh", "gem", "graphopt", "kk", "lgl", "mds" and "sugiyama"</code></p></dd>
 
 
 <dt>markCommunity</dt>
-<dd><p><code>character</code> A <code>geom_mark_*</code> method supported by <code>ggforce</code> to annotate sets of nodes belonging to the same community.
+<dd><p><code>character</code> A <code>geom_mark_*</code> method supported by
+<code>ggforce</code> to annotate sets of nodes belonging to the same community.
 Either <code>*NULL*, *ellipse*, *circle*, *hull*, *rect*</code></p></dd>
 
 
 <dt>markAlpha</dt>
-<dd><p>Transparency of annotation areas. Default to 0.2</p></dd>
+<dd><p>Transparency of annotation areas.</p></dd>
+
+
+<dt>color_lg_title</dt>
+<dd><p>Title for the color legend</p></dd>
 
 
 <dt>edgeAlpha</dt>
-<dd><p>Transparency of edges. Default to 0.8</p></dd>
+<dd><p>Transparency of edges.</p></dd>
 
 
 <dt>scale_edgeWidth</dt>
-<dd><p>A numerical vector of length 2 to be provided to <code><a href="https://ggraph.data-imaginist.com/reference/scale_edge_width.html" class="external-link">ggraph::scale_edge_width_continuous()</a></code> for specifying
-the minimum and maximum edge widths after transformation. Defaulted to c(0.5, 3)</p></dd>
+<dd><p>A numerical vector of length 2 to be provided to
+<code><a href="https://ggraph.data-imaginist.com/reference/scale_edge_width.html" class="external-link">ggraph::scale_edge_width_continuous()</a></code> for specifying the minimum and
+maximum edge widths after transformation.</p></dd>
 
 
 <dt>edgeLegend</dt>
@@ -145,8 +156,9 @@ the minimum and maximum edge widths after transformation. Defaulted to c(0.5, 3)
 
 
 <dt>scale_nodeSize</dt>
-<dd><p>A numerical vector of length 2 to be provided to <code><a href="https://ggplot2.tidyverse.org/reference/scale_size.html" class="external-link">ggplot2::scale_size()</a></code> for specifying
-the minimum and maximum node sizes after transformation. Defaulted to c(3,6)</p></dd>
+<dd><p>A numerical vector of length 2 to be provided to
+<code><a href="https://ggplot2.tidyverse.org/reference/scale_size.html" class="external-link">ggplot2::scale_size()</a></code> for specifying
+the minimum and maximum node sizes after transformation.</p></dd>
 
 
 <dt>nodeShape</dt>
@@ -162,15 +174,12 @@ the minimum and maximum node sizes after transformation. Defaulted to c(3,6)</p>
 
 
 <dt>plotIsolated</dt>
-<dd><p><code>logical</code>.Should nodes not connected to any other nodes be plotted.  Default to FALSE</p></dd>
+<dd><p><code>logical(1)</code> Should nodes not connected to any other
+nodes be plotted. Defaults to FALSE</p></dd>
 
 
 <dt>...</dt>
 <dd><p>Used to pass various potting parameters to <code>ggforce::geom_mark_*()</code></p></dd>
-
-
-<dt>color_lg_title</dt>
-<dd><p>Title for the color legend</p></dd>
 
 </dl></div>
     <div id="value">
@@ -185,12 +194,12 @@ the minimum and maximum node sizes after transformation. Defaulted to c(3,6)</p>
 be applied to the pathway-pathway network, and communities will be annotated
 with the pathway category that had the highest number of occurrence,
 denoting the main biological processes perturbed in that community.</p>
-<p>At the moment, only categorisations of KEGG pathway were built into the
+<p>At the moment, only KEGG pathway categories are provided with the
 package, so if the provided <code>normalisedScores</code> contains perturbation
 scores of pathways derived from other databases, annotation of communities
 will not be performed unless pathway information is provided through
-the <code>gsAnnotation</code> parameter. The categorisation information needs to be
-stored in a <code>data.frame</code> containing <code>gs_name</code> (gene-set names) and
+the <code>gsAnnotation</code> object. The category information needs to be
+provided in a <code>data.frame</code> containing <code>gs_name</code> (gene-set names) and
 <code>category</code> (categorisation of the given pathways).</p>
 <p>Plotting parameters accepted by <code>geom_mark_*</code> could be passed to the
 function to adjust the annotation area or the annotation label. See
@@ -203,28 +212,26 @@ function to adjust the annotation area or the annotation label. See
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/load.html" class="external-link">load</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"normalisedScores.rda"</span>, package <span class="op">=</span> <span class="st">"sSNAPPY"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co">#Subset the first 10 rows of the normalisedScores data.frame as an example</span></span></span>
 <span class="r-in"><span><span class="va">subset</span> <span class="op">&lt;-</span> <span class="va">normalisedScores</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">15</span>,<span class="op">]</span></span></span>
-<span class="r-in"><span><span class="co"># Color network plot nodes by the community they were assigned to and mark nodes belonging</span></span></span>
-<span class="r-in"><span><span class="co"># to the same community by ellipses</span></span></span>
+<span class="r-in"><span><span class="va">subset</span><span class="op">$</span><span class="va">status</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">subset</span><span class="op">$</span><span class="va">robustZ</span> <span class="op">&gt;</span> <span class="fl">0</span>, <span class="st">"Activated"</span>, <span class="st">"Inhibited"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Color network plot nodes by the community they were assigned to and mark </span></span></span>
+<span class="r-in"><span><span class="co"># nodes belonging to the same community by ellipses</span></span></span>
 <span class="r-in"><span><span class="fu">plot_community</span><span class="op">(</span><span class="va">subset</span>, <span class="va">gsTopology</span>, colorBy <span class="op">=</span> <span class="st">"community"</span>,layout <span class="op">=</span> <span class="st">"kk"</span>,</span></span>
 <span class="r-in"><span>color_lg_title <span class="op">=</span> <span class="st">"Community"</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Ignoring unknown parameters: `colour_lg_title`</span>
 <span class="r-plt img"><img src="plot_community-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Color network plot nodes by pathways' directions of changes and mark nodes belonging</span></span></span>
-<span class="r-in"><span><span class="co"># to the same community by ellipses</span></span></span>
-<span class="r-in"><span><span class="fu">plot_community</span><span class="op">(</span><span class="va">subset</span>, <span class="va">gsTopology</span>, colorBy <span class="op">=</span> <span class="st">"robustZ"</span>,layout <span class="op">=</span> <span class="st">"kk"</span>,</span></span>
+<span class="r-in"><span><span class="co"># Color network plot nodes by pathways' directions of changes and mark nodes </span></span></span>
+<span class="r-in"><span><span class="co"># belonging to the same community by ellipses</span></span></span>
+<span class="r-in"><span><span class="fu">plot_community</span><span class="op">(</span><span class="va">subset</span>, <span class="va">gsTopology</span>, colorBy <span class="op">=</span> <span class="st">"status"</span>,layout <span class="op">=</span> <span class="st">"kk"</span>,</span></span>
 <span class="r-in"><span>color_lg_title <span class="op">=</span> <span class="st">"Direction of pathway perturbation"</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Ignoring unknown parameters: `colour_lg_title`</span>
 <span class="r-plt img"><img src="plot_community-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># To change the colour and fill of `geom_mark_*` annotation, use any</span></span></span>
 <span class="r-in"><span><span class="co"># `scale_fill_*` and/or `scale_color_*`</span></span></span>
 <span class="r-in"><span><span class="co"># functions supported by `ggplot2`. For example:</span></span></span>
-<span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">plot_community</span><span class="op">(</span><span class="va">subset</span>, <span class="va">gsTopology</span>, colorBy <span class="op">=</span> <span class="st">"robustZ"</span>,layout <span class="op">=</span> <span class="st">"kk"</span>,</span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">plot_community</span><span class="op">(</span><span class="va">subset</span>, <span class="va">gsTopology</span>, colorBy <span class="op">=</span> <span class="st">"status"</span>,layout <span class="op">=</span> <span class="st">"kk"</span>,</span></span>
 <span class="r-in"><span>markCommunity <span class="op">=</span> <span class="st">"rect"</span>,color_lg_title <span class="op">=</span> <span class="st">"Direction of pathway perturbation"</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Ignoring unknown parameters: `colour_lg_title`</span>
 <span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_color_ordinal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_fill_ordinal</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> Continuous value supplied to discrete scale</span>
+<span class="r-plt img"><img src="plot_community-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
